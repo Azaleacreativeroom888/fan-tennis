@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>球音 -Kyuon- | テニス学習ノート</title>
+<meta name="description" content="テニスのルール、技術、歴史をゆっくり学ぶ個人の学習ノート「球音」。">
+<meta name="robots" content="noai, noimageai">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --yellow:#D7E639;
+    --yellow-soft:#F1F4C9;
+    --yellow-line:#EEF29B;
+    --green-deep:#233B1E;
+    --green:#3F6B34;
+    --green-mid:#5C8A46;
+    --green-pale:#E7EFDD;
+    --cream:#FAF8EE;
+    --ink:#22301C;
+    --line:rgba(34,48,28,0.14);
+    --font-display:"Shippori Mincho B1", serif;
+    --font-body:"Zen Kaku Gothic New", sans-serif;
+    --font-mono:"Space Mono", monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--font-body);
+    background:var(--cream);
+    color:var(--ink);
+    line-height:1.85;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+  img,svg{display:block; max-width:100%;}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,248,238,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{
+    max-width:1080px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px;
+  }
+  .logo{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--font-display); font-weight:700;
+    font-size:22px; letter-spacing:.02em; color:var(--green-deep);
+  }
+  .logo .ball{
+    width:16px; height:16px; border-radius:50%;
+    background:var(--yellow); position:relative; flex:none;
+    box-shadow:inset 0 0 0 1px rgba(34,48,28,0.25);
+  }
+  .logo .ball::before,.logo .ball::after{
+    content:""; position:absolute; border:1px solid var(--cream); border-radius:50%;
+  }
+  .logo .ball::before{ width:20px; height:20px; top:-3px; left:6px; }
+  .logo .ball::after{ width:20px; height:20px; top:-3px; left:-9px; }
+  nav ul{list-style:none; display:flex; gap:32px;}
+  nav a{
+    font-size:14px; letter-spacing:.05em; color:var(--green-deep);
+    position:relative; padding-bottom:4px;
+  }
+  nav a.current{color:var(--green);}
+  nav a.current::after{
+    content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px;
+    background:var(--yellow);
+  }
+  nav a:hover{color:var(--green);}
+  .menu-btn{display:none; background:none; border:none; cursor:pointer; padding:4px;}
+  .menu-btn span{display:block; width:22px; height:2px; background:var(--green-deep); margin:5px 0;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background:var(--green-deep);
+    color:var(--cream);
+    padding:96px 24px 120px;
+  }
+  .court-lines{
+    position:absolute; inset:0; opacity:.5;
+  }
+  .hero-inner{
+    position:relative; max-width:760px; margin:0 auto; text-align:center;
+  }
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.22em;
+    color:var(--yellow); text-transform:uppercase; margin-bottom:22px;
+  }
+  .hero h1{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(38px,7vw,64px); line-height:1.25; letter-spacing:.02em;
+    margin-bottom:24px;
+  }
+  .hero h1 em{
+    font-style:normal; color:var(--yellow);
+  }
+  .hero p{
+    font-size:16px; color:rgba(250,248,238,0.82); max-width:520px; margin:0 auto 40px;
+  }
+  .hero-ball{
+    position:absolute; width:34px; height:34px; border-radius:50%;
+    background:var(--yellow); box-shadow:0 6px 16px rgba(0,0,0,0.25);
+  }
+  .hero-ball::before,.hero-ball::after{
+    content:""; position:absolute; border:1.5px solid var(--green-deep); border-radius:50%;
+  }
+  .hero-ball::before{ width:42px; height:42px; top:-4px; left:12px; }
+  .hero-ball::after{ width:42px; height:42px; top:-4px; left:-16px; }
+
+  /* ---------- section basics ---------- */
+  section{padding:88px 24px;}
+  .inner{max-width:1080px; margin:0 auto;}
+  .section-head{max-width:560px; margin-bottom:48px;}
+  .kicker{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.18em;
+    color:var(--green); text-transform:uppercase; margin-bottom:14px;
+    display:flex; align-items:center; gap:8px;
+  }
+  .kicker::before{
+    content:""; width:8px; height:8px; background:var(--yellow); border-radius:50%;
+    box-shadow:0 0 0 1px var(--green-deep) inset;
+  }
+  h2{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(26px,3.6vw,34px); color:var(--green-deep); line-height:1.4;
+  }
+  .lead{color:rgba(34,48,28,0.7); font-size:15px; margin-top:10px;}
+
+  /* ---------- about ---------- */
+  .about{
+    display:grid; grid-template-columns:1.1fr .9fr; gap:56px; align-items:start;
+  }
+  .about p{font-size:15.5px; color:var(--ink); margin-bottom:16px; max-width:46ch;}
+  .about-card{
+    background:var(--green-deep); color:var(--cream);
+    border-radius:4px; padding:32px; position:relative;
+  }
+  .about-card .score{
+    font-family:var(--font-mono); font-size:13px; color:var(--yellow);
+    letter-spacing:.1em; margin-bottom:16px;
+  }
+  .about-card ul{list-style:none; display:flex; flex-direction:column; gap:14px;}
+  .about-card li{
+    font-size:14px; color:rgba(250,248,238,0.85);
+    padding-left:18px; position:relative;
+  }
+  .about-card li::before{
+    content:""; position:absolute; left:0; top:8px; width:8px; height:8px;
+    border-radius:50%; background:var(--yellow);
+  }
+
+  /* ---------- themes grid ---------- */
+  .themes{background:var(--green-pale);}
+  .theme-grid{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+    background:var(--line); border:1px solid var(--line);
+  }
+  .theme-card{
+    background:var(--cream); padding:32px 26px; min-height:230px;
+    display:flex; flex-direction:column;
+  }
+  .theme-score{
+    font-family:var(--font-mono); font-weight:700; font-size:26px;
+    color:var(--yellow-line); -webkit-text-stroke:1.2px var(--green-deep);
+    margin-bottom:18px; letter-spacing:.02em;
+  }
+  .theme-card h3{
+    font-family:var(--font-display); font-size:18px; color:var(--green-deep);
+    margin-bottom:10px; font-weight:700;
+  }
+  .theme-card p{font-size:13.5px; color:rgba(34,48,28,0.68);}
+
+  /* ---------- blog preview ---------- */
+  .diary-list{display:flex; flex-direction:column;}
+  .diary-item{
+    display:grid; grid-template-columns:120px 1fr; gap:24px;
+    padding:22px 0; border-bottom:1px solid var(--line);
+  }
+  .diary-item:first-child{border-top:1px solid var(--line);}
+  .diary-date{
+    font-family:var(--font-mono); font-size:13px; color:var(--green);
+    padding-top:2px;
+  }
+  .diary-text{font-size:14.5px; color:var(--ink);}
+  .more-link{
+    display:inline-flex; align-items:center; gap:8px;
+    margin-top:28px; font-size:14px; color:var(--green-deep);
+    border-bottom:1px solid var(--green-deep); padding-bottom:2px;
+  }
+  .more-link:hover{color:var(--green);}
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--green-deep); color:rgba(250,248,238,0.72);
+    padding:56px 24px 32px;
+  }
+  .footer-inner{max-width:1080px; margin:0 auto;}
+  .footer-top{
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:32px;
+    padding-bottom:32px; border-bottom:1px solid rgba(250,248,238,0.15);
+  }
+  .footer-logo{
+    font-family:var(--font-display); font-weight:700; font-size:20px; color:var(--cream);
+  }
+  .footer-links{display:flex; gap:28px; flex-wrap:wrap;}
+  .footer-links a{font-size:13.5px;}
+  .footer-links a:hover{color:var(--yellow);}
+  .footer-bottom{
+    padding-top:24px; font-size:12px; line-height:1.9; color:rgba(250,248,238,0.5);
+  }
+
+  @media (max-width:860px){
+    .about{grid-template-columns:1fr;}
+    .theme-grid{grid-template-columns:repeat(2,1fr);}
+  }
+  @media (max-width:640px){
+    nav ul{
+      position:fixed; top:64px; left:0; right:0; background:var(--cream);
+      flex-direction:column; gap:0; border-bottom:1px solid var(--line);
+      transform:translateY(-8px); opacity:0; pointer-events:none;
+      transition:.2s ease;
+    }
+    nav ul.open{transform:translateY(0); opacity:1; pointer-events:auto;}
+    nav li{border-top:1px solid var(--line);}
+    nav a{display:block; padding:16px 24px;}
+    .menu-btn{display:block;}
+    .theme-grid{grid-template-columns:1fr;}
+    .diary-item{grid-template-columns:1fr; gap:6px;}
+    section{padding:64px 20px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="index.html" class="logo"><span class="ball"></span>球音</a>
+    <button class="menu-btn" id="menuBtn" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+    <nav>
+      <ul id="navList">
+        <li><a href="index.html" class="current">ホーム</a></li>
+        <li><a href="blog.html">日記</a></li>
+        <li><a href="gallery.html">ギャラリー</a></li>
+        <li><a href="about.html">このサイトについて</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <svg class="court-lines" viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <rect x="150" y="60" width="900" height="380" fill="none" stroke="#F1F4C9" stroke-width="2"/>
+    <line x1="150" y1="150" x2="1050" y2="150" stroke="#F1F4C9" stroke-width="2"/>
+    <line x1="150" y1="350" x2="1050" y2="350" stroke="#F1F4C9" stroke-width="2"/>
+    <line x1="600" y1="150" x2="600" y2="350" stroke="#F1F4C9" stroke-width="2"/>
+    <line x1="150" y1="250" x2="1050" y2="250" stroke="#F1F4C9" stroke-width="1"/>
+    <line x1="300" y1="60" x2="300" y2="440" stroke="#F1F4C9" stroke-width="2"/>
+    <line x1="900" y1="60" x2="900" y2="440" stroke="#F1F4C9" stroke-width="2"/>
+  </svg>
+  <span class="hero-ball" style="top:118px; left:12%;"></span>
+  <span class="hero-ball" style="width:20px; height:20px; bottom:64px; right:16%;"></span>
+  <div class="hero-inner">
+    <p class="eyebrow">Tennis study notebook</p>
+    <h1>球音<br>聞こえる<em>場所</em>へ。</h1>
+    <p>ラケットが弾く音、コートに響くボールの音。テニスというスポーツのルールも、歴史も、技術も、自分のペースで少しずつ紐解いていく学習ノートです。</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="inner about">
+    <div>
+      <p class="kicker">About</p>
+      <h2>このノートについて</h2>
+      <p class="lead" style="margin-bottom:28px;">観戦して気づいたこと、調べて分かったこと、練習で感じたこと。</p>
+      <p>テニスをもっと知りたくて始めた、個人の学習記録です。専門的な解説というより、ルールを一つずつ覚えていく過程や、選手のプレーを見て「なぜ強いのか」を考えた記録を、思いついたときに書き留めています。</p>
+      <p>知識はまだ少ないですが、コート脇でノートを取るような気持ちで、これからも更新していきます。</p>
+    </div>
+    <div class="about-card">
+      <p class="score">Love — 0</p>
+      <ul>
+        <li>テニス歴：観戦・独学中</li>
+        <li>更新頻度：気づいたときに</li>
+        <li>目標：四大大会を自分の言葉で語れるようになること</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="themes" id="themes">
+  <div class="inner">
+    <div class="section-head">
+      <p class="kicker">Study themes</p>
+      <h2>学びのテーマ</h2>
+      <p class="lead">テニスのスコアの数え方にならって、学びの段階を並べています。</p>
+    </div>
+    <div class="theme-grid">
+      <div class="theme-card">
+        <span class="theme-score">Love</span>
+        <h3>基本ルール</h3>
+        <p>サーブの順番、スコアの数え方、コートの区分けなど、まず知っておきたい基礎知識をまとめます。</p>
+      </div>
+      <div class="theme-card">
+        <span class="theme-score">15</span>
+        <h3>技術と戦術</h3>
+        <p>フォアハンド、スライス、フットワーク。プレーの仕組みを観察しながら書き残します。</p>
+      </div>
+      <div class="theme-card">
+        <span class="theme-score">30</span>
+        <h3>歴史と大会</h3>
+        <p>四大大会の成り立ちや名勝負など、テニスというスポーツの歩みを辿ります。</p>
+      </div>
+      <div class="theme-card">
+        <span class="theme-score">40</span>
+        <h3>選手とプレースタイル</h3>
+        <p>気になる選手のプレースタイルや、強さの理由を自分なりに掘り下げます。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="diary">
+  <div class="inner">
+    <div class="section-head">
+      <p class="kicker">Latest notes</p>
+      <h2>最新の記録</h2>
+      <p class="lead">日付と一言だけの、簡単な学習日記です。</p>
+    </div>
+    <div class="diary-list">
+      <div class="diary-item">
+        <span class="diary-date">2026.07.28</span>
+        <span class="diary-text">タイブレークのルールをようやく正しく覚えた。7点先取、2点差というシンプルさが逆に頭に残りにくかった。</span>
+      </div>
+      <div class="diary-item">
+        <span class="diary-date">2026.07.21</span>
+        <span class="diary-text">スライスとトップスピンの違いを動画で見比べる。回転方向でボールの弾み方がこんなに変わるとは。</span>
+      </div>
+      <div class="diary-item">
+        <span class="diary-date">2026.07.14</span>
+        <span class="diary-text">四大大会それぞれのコートサーフェスの違いを調べ始めた。クレー、グラス、ハード、まずは名前と特徴から。</span>
+      </div>
+    </div>
+    <a href="blog.html" class="more-link">すべての記録を見る →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <span class="footer-logo">球音 -Kyuon-</span>
+      <div class="footer-links">
+        <a href="index.html">ホーム</a>
+        <a href="blog.html">日記</a>
+        <a href="gallery.html">ギャラリー</a>
+        <a href="about.html">このサイトについて</a>
+        <a href="https://azaleacreativeroom888.github.io" target="_blank" rel="noopener">Azalea Creative Room</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>本サイトの文章・画像を無断でAIの学習データとして使用することを禁じます。</p>
+      <p>© 2026 球音 -Kyuon-</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('navList');
+  btn.addEventListener('click', function(){ nav.classList.toggle('open'); });
+</script>
+
+</body>
+</html>
